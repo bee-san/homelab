@@ -1,0 +1,150 @@
+---
+# Homepage configuration
+# See https://fontawesome.com/v5/search for icons options
+
+# Optional: Use external configuration file.
+# Using this will ignore remaining config in this file
+# externalConfig: https://example.com/server-luci/config.yaml
+
+title: "🏡"
+# documentTitle: "Welcome" # Customize the browser tab text
+# logo: "assets/logo.png"
+# Alternatively a fa icon can be provided:
+# icon: "fas fa-skull-crossbones"
+
+header: false # Set to false to hide the header
+# Optional: Different hotkey for search, defaults to "/"
+# hotkey:
+#   search: "Shift"
+footer: false
+
+columns: "3" # "auto" or number (must be a factor of 12: 1, 2, 3, 4, 6, 12)
+
+# Set the default layout and color scheme
+defaults:
+  layout: columns # Either 'columns', or 'list'
+  colorTheme: auto # One of 'auto', 'light', or 'dark'
+
+# Optional theming
+theme: "default" # 'default' or one of the themes available in 'src/assets/themes'.
+
+# Optional custom stylesheet
+# Will load custom CSS files. Especially useful for custom icon sets.
+# stylesheet:
+#   - "assets/custom.css"
+
+# Here is the exhaustive list of customization parameters
+# However all value are optional and will fallback to default if not set.
+# if you want to change only some of the colors, feel free to remove all unused key.
+colors:
+  light:
+    highlight-primary: "#D11F4E"
+    highlight-secondary: "#2F2170"
+    highlight-hover: "#1F2041"
+    background: "#02011A"
+    card-background: "#1F2041"
+    text: "#00CCDD"
+    text-header: "#00CCDD"
+    text-title: "#D11F4E"
+    text-subtitle: "#00CCDD"
+    card-shadow: rgba(0, 0, 0, 0.4)
+    link-hover: "#D11F4E"
+    background-image: "/assets/tools/nyc.jpg"
+  dark:
+    highlight-primary: "#D11F4E"
+    highlight-secondary: "#2F2170"
+    highlight-hover: "#1F2041"
+    background: "#02011A"
+    card-background: "#1F2041"
+    text: "#00CCDD"
+    text-header: "#00CCDD"
+    text-title: "#D11F4E"
+    text-subtitle: "#00CCDD"
+    card-shadow: rgba(0, 0, 0, 0.4)
+    link-hover: "#D11F4E"
+    background-image: "/assets/tools/nyc.jpg"
+# Optional navbar
+# links: [] # Allows for navbar (dark mode, layout, and search) without any links
+links:
+  - name: "Tailscale"
+    icon: "fab fa-github"
+    url: "https://login.tailscale.com/admin/machines"
+    target: "_blank" # optional html tag target attribute
+  - name: "Rust Subreddit"
+    icon: "fas fa-book"
+    url: "http://reddit.com/r/rust/"
+  - name: "LGBT Tech"
+    icon: "fas fa-book"
+    url: "http://tech.lgbt"
+    target: "_blank"
+
+# Services
+# First level array represents a group.
+# Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
+services:
+  - name: "Applications"
+    icon: "fas fa-code-branch"
+    items:
+      - name: "🗃️ Paperless"
+        # subtitle: "Network-wide Ad Blocking" # optional, if no subtitle is defined, PiHole statistics will be shown
+        url: "http://100.92.124.56:8000"
+        type: "PaperlessNG" # optional, loads a specific component that provides extra features. MUST MATCH a file name (without file extension) available in `src/components/services`
+        apikey: "4b0c49f54c1b6929e4863da250343174b748d82d"
+        target: "_blank" # optional html a tag target attribute
+        # class: "green" # optional custom CSS class for card, useful with custom stylesheet
+        # background: red # optional color for card to set color directly without custom stylesheet
+      - name: "🏴‍☠️ qBittorrent"
+        url: "http://100.92.124.56:8080" # Your rTorrent web UI, f.e. ruTorrent or Flood.
+        rateInterval: 2000 # Interval for updating the download and upload rates.
+        torrentInterval: 5000 # Interval for updating the torrent count.
+        target: "_blank" # optional html a tag target attribute
+      - name: "🍿 Jellyfin"
+        url: "http://100.92.124.56:8096"
+        type: "Emby"
+        apikey: "e15c6042680b4f508091bff5b91433d2"
+        libraryType: "movies" #Choose which stats to show. Can be one of: music, series or movies.
+      - name: "📰 FreshRSS"
+        url: "http://100.92.124.56:16000"
+      - name: "📹 Invidious"
+        url: "http://100.92.124.56:3000"
+  - name: "Monitoring"
+    icon: "fas fa-heartbeat"
+    items:
+      - name: "🚫 Pi-hole K8s"
+        # subtitle: "Network-wide Ad Blocking" # optional, if no subtitle is defined, PiHole statistics will be shown
+        url: "http://pi4:12000/admin"
+        target: "_blank" # optional html a tag target attribute
+        # class: "green" # optional custom CSS class for card, useful with custom stylesheet
+        # background: red # optional color for card to set color directly without custom stylesheet
+      - name: "🚫 PiHole 2"
+        # subtitle: "Network-wide Ad Blocking" # optional, if no subtitle is defined, PiHole statistics will be shown
+        url: "http://100.67.73.25/admin"
+        target: "_blank" # optional html a tag target attribute
+        # class: "green" # optional custom CSS class for card, useful with custom stylesheet
+        # background: red # optional color for card to set color directly without custom stylesheet
+      - name: "🚫 PiHole 2b"
+        # subtitle: "Network-wide Ad Blocking" # optional, if no subtitle is defined, PiHole statistics will be shown
+        url: "http://100.114.68.38/admin/"
+        target: "_blank" # optional html a tag target attribute
+      - name: "🚫 Adguard Home"
+        # subtitle: "Network-wide Ad Blocking" # optional, if no subtitle is defined, PiHole statistics will be shown
+        url: "http://100.92.124.56:5655"
+        target: "_blank" # optional html a tag target attribute
+      - name: "🔥 Prometheus"
+        type: Prometheus
+        url: "prometheus.100.83.65.31.nip.io"
+        # subtitle: "Monitor data server"
+      - name: "📈 Grafana"
+        url: "http://grafana.100.83.65.31.nip.io"
+        # subtitle: "Monitor data server"
+      - name: "⛔️ AlertManager"
+        url: "alertmanager.100.83.65.31.nip.io"
+        # subtitle: "Monitor data server"
+      - name: "📊 Uptime Kuma"
+        url: "http://100.92.124.56:3001"
+        type: "UptimeKuma"
+  - name: "Important Links"
+    icon: "fas fa-code-branch"
+    items:
+    - name: "✍️ Blog"
+      url: "http://skerritt-blog.ghost.io/ghost/#/posts"
